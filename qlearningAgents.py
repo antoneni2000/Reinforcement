@@ -115,9 +115,7 @@ class QLearningAgent(ReinforcementAgent):
         """
         "*** YOUR CODE HERE ***"
         difference = (reward + self.discount * self.computeValueFromQValues(nextState)) - self.getQValue(state, action)
-        features = self.featExtractor.getFeatures(state, action)
-        for feature, value in features.items():
-          self.weights[feature] += self.alpha * difference * value
+        self.qValues[(state,action)] +=self.alpha*difference
           
           
     def getPolicy(self, state):
